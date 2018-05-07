@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>heatCheck</title>
+    <meta name="description" content="A sample Flask website for db-beers"/>
+    <meta name="keywords" content="flask, db-beers"/>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <h1 class = "text-center" style = "font-size: 72px"><span style="color: #ff0000">heat</span>Check</h1>
+    <h2 class = "text-center"> Duke Men's Basketball Analytics</h2>
+    <h1><img src="/static/img/duke_three.jpg" style="float:right"/></h1>
+    <h2 id="heading">{% block heading %}{% endblock %}</h2>
+    {% block content %}{% endblock %}
+  </body>
+</html>

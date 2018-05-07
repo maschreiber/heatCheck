@@ -1,0 +1,166 @@
+<!-- Latest compiled and minified CSS -->
+
+{% extends 'layout.html' %}
+{% block heading %}Query{% endblock %}
+{% block content %}
+<ul>
+
+
+<form method="POST">
+    <div class = "form-group">
+        <input name="gids" placeholder="0,1,2,24" value={{gids_disp}}> Game Ids <br>
+        <input name="periods" placeholder="1,2,3" value = {{periods_disp}}>
+        Periods <br>
+        <input name="clock_min" placeholder="0" value = {{clock_min_disp}}> Clock Min <br>
+        <input name="clock_max" placeholder="1200" value = {{clock_max_disp}}> Clock Max <br>
+       <input name="dribbles_min" placeholder="0" value = {{dribbles_min_disp}}>
+        Dribbles Min <br>
+        <input name="dribbles_max" placeholder="40" value =
+        {{dribbles_max_disp}}> Dribbles Max <br>
+        <input name="made" placeholder="0,1" value = {{made_disp}}> Made <br>
+        <input name="shot_type" placeholder="2,3" value = {{shot_type_disp}}>
+        Shot Type <br>
+        <input name="names" style="width: 300px;" placeholder="gray, matt, Jefferson" value =
+        "{{names_disp}}"> Names <br>
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+</form>
+
+<a href="{{ url_for('home') }}"><button class = "btn btn-default">Reset</button></a>
+
+
+<p><h2>Opponents</h2>
+<div class = "table-responsive">
+    <table class = "table table-bordered"> {{'  '}} 
+        <tr>
+            <th>Opponent</th>
+            {% for game in games %}
+            <td>{{game.opponent}}</td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <th>gid</th>
+            {% for game in games %}
+            <td>{{game.gid}}</td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <th>Day</th>
+            {% for game in games %}
+            <td>{{game.day}}</td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <th>City</th>
+            {% for game in games %}
+            <td>{{game.city}}</td>
+            {% endfor %}
+        </tr>
+    </table>
+</div>
+    <iframe scrolling="no" frameborder="0"
+    style="position: relative; height: 500px; width: 100%;" src="{{
+    url_for('fig', x=x, y = y, made=made)}}" > </iframe>
+</h1>
+<p><h2>Statistics</h2>
+    <div class = "container">
+    <!--<ul> -->
+        <div class = "row">Shot Percentage = {{shotPercentage}} </div>
+        <div class = "row">First Half Shot Percentage = {{firstHalfShotPercentage}}</div>
+        <div class = "row">Second Half Shot Percentage = {{secondHalfShotPercentage}}</div>
+        <div class = "row">Three Point Percentage = {{threePointPercentage}}</div>
+        <div class = "row">Two Point Percentage = {{twoPointPercentage}}</div>
+        <div class = "row">
+            <table class = "table table-bordered">
+                <tr>
+                    <td>
+                        <table class = "table table-bordered"> 
+                            <caption>Shot Percentage Per Player</caption>
+                            {% for player in playerPercentages %}
+                                <tr>
+                                    <th>{{player[0]}} </th>
+                                    <td>{{player[1]}} </td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </td>
+                    <td>
+                        <table class = "table table-bordered">
+                            <caption>Three Point Percentage Per Player</caption>
+                            {% for player in playerThreePercentage %}
+                                <tr>
+                                    <th>{{player[0]}} </th>
+                                    <td>{{player[1]}} </td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </td>
+                    <td>
+                        <table class = "table table-bordered">
+                            <caption>Two Point Percentage Per Player</caption>
+                            {% for player in playerTwoPercentage %}
+                                <tr>
+                                    <th>{{player[0]}} </th>
+                                    <td>{{player[1]}} </td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </td>
+                    <td>
+                        <table class = "table table-bordered">
+                            <caption>Player Usage</caption>
+                            {% for player in playerUsage %}
+                                <tr>
+                                    <th>{{player[0]}} </th>
+                                    <td>{{player[1]}} </td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+
+        
+
+    <!--</ul> -->
+    </div>
+
+</p>
+
+<p><h2> Shots </h2>
+  <ul>
+    <table class = "table table-bordered">
+        <tr>
+            <th>Name</th>
+            <th>Made</th>
+            <th>Type</th>
+            <th>X</th>
+            <th>Y</th>
+            <th>Dribbles</th>
+            <th>Defender</th>
+            <th>Game</th>
+            <th>Period</th>
+            <th>Clock</th>
+        </tr>
+        {% for shot in shots %}
+        <tr>
+        <td>{{shot.name}}</td>
+        <td>{{shot.made}}</td>
+        <td>{{shot.shot_type}}</td>
+        <td>{{shot.x}}</td>
+        <td>{{shot.y}}</td>
+        <td>{{shot.dribbles}}</td>
+        <td>{{shot.def_name}}</td>
+        <td>{{shot.gid}}</td>
+        <td>{{shot.period}}</td>
+        <td>{{shot.clock}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+  </ul>
+</p>
+
+
+{% endblock %}
